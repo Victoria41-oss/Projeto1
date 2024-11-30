@@ -1,0 +1,146 @@
+Flashcards/
+├── index.html         # Página principal
+├── styles/
+│   └── style.css      # Estilos CSS
+├── scripts/
+│   ├── main.js        # Código principal do JavaScript
+│   └── perguntas.js   # Arquivo com as perguntas e respostas
+├── assets/
+│   └── images/        # Imagens ou ícones (opcional)
+├── README.md          # Documentação do projeto
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flashcards Interativos</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <header>
+    <h1>Flashcards de Estudo</h1>
+    <p>Estude com base nas perguntas e respostas criadas dinamicamente!</p>
+  </header>
+
+  <main>
+    <section id="flashcards" class="flashcards-container">
+      <!-- Os cartões serão gerados dinamicamente aqui -->
+    </section>
+  </main>
+
+  <footer>
+    <p>Feito com ♥ pela comunidade da Alura</p>
+  </footer>
+
+  <script src="scripts/perguntas.js" defer></script>
+  <script src="scripts/main.js" defer></script>
+</body>
+</html>
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background: #f9f9f9;
+  color: #333;
+}
+
+header {
+  text-align: center;
+  padding: 2rem;
+  background: #007bff;
+  color: white;
+}
+
+main {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.flashcards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card p {
+  display: none;
+}
+
+.card.show p {
+  display: block;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #007bff;
+  color: white;
+}
+const perguntas = [
+  {
+    pergunta: "O que é JavaScript?",
+    resposta: "JavaScript é uma linguagem de programação usada para criar interatividade em páginas web.",
+  },
+  {
+    pergunta: "Qual a diferença entre var, let e const?",
+    resposta: "var tem escopo global ou de função; let e const têm escopo de bloco, sendo const imutável.",
+  },
+  {
+    pergunta: "O que é DOM?",
+    resposta: "O DOM (Document Object Model) é uma interface que permite manipular elementos HTML e CSS via JavaScript.",
+  },
+  {
+    pergunta: "Para que serve o Flexbox?",
+    resposta: "Flexbox é um módulo de layout do CSS que facilita o alinhamento e distribuição de elementos em uma página.",
+  },
+];
+document.addEventListener("DOMContentLoaded", () => {
+  const flashcardsContainer = document.getElementById("flashcards");
+
+  // Função para criar os cartões
+  function criarCartoes(perguntas) {
+    perguntas.forEach(({ pergunta, resposta }) => {
+      const card = document.createElement("div");
+      card.classList.add("card");
+
+      const perguntaElement = document.createElement("h3");
+      perguntaElement.textContent = pergunta;
+
+      const respostaElement = document.createElement("p");
+      respostaElement.textContent = resposta;
+
+      // Alternar visibilidade da resposta
+      card.addEventListener("click", () => {
+        card.classList.toggle("show");
+      });
+
+      card.appendChild(perguntaElement);
+      card.appendChild(respostaElement);
+      flashcardsContainer.appendChild(card);
+    });
+  }
+
+  criarCartoes(perguntas);
+});
