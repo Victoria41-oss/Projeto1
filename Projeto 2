@@ -1,0 +1,191 @@
+Alurabook/
+├── index.html        # Estrutura HTML principal
+├── styles/
+│   ├── style.css     # Estilização principal
+│   └── responsive.css # Estilos específicos para tablet e desktop
+├── scripts/
+│   ├── main.js       # Funcionalidades JavaScript
+│   └── carrossel.js  # Configuração do plugin de carrossel
+├── assets/
+│   ├── images/       # Imagens do projeto
+│   └── icons/        # Ícones usados no projeto
+├── README.md         # Documentação do projeto
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alurabook</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <!-- Cabeçalho -->
+  <header>
+    <nav>
+      <button id="menu-toggle" class="menu-hamburguer">☰</button>
+      <ul id="menu" class="menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#categorias">Categorias</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Banner -->
+  <section class="banner">
+    <div class="banner-content">
+      <h1>Bem-vindo ao Alurabook</h1>
+      <form class="pesquisa">
+        <input type="text" placeholder="Busque por livros, autores..." />
+      </form>
+    </div>
+  </section>
+
+  <!-- Carrossel -->
+  <section id="carrossel" class="carrossel">
+    <h2>Lançamentos</h2>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">Livro 1</div>
+        <div class="swiper-slide">Livro 2</div>
+        <div class="swiper-slide">Livro 3</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mais vendidos -->
+  <section class="mais-vendidos">
+    <h2>Mais Vendidos</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="assets/images/livro1.jpg" alt="Livro 1">
+        <h3>Livro 1</h3>
+      </div>
+      <div class="card">
+        <img src="assets/images/livro2.jpg" alt="Livro 2">
+        <h3>Livro 2</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tópicos visitados recentemente -->
+  <section class="recentes">
+    <h2>Tópicos Visitados Recentemente</h2>
+    <ul>
+      <li>JavaScript</li>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>React</li>
+    </ul>
+  </section>
+
+  <!-- Contato -->
+  <section id="contato">
+    <h2>Entre em Contato</h2>
+    <form>
+      <input type="email" placeholder="Seu e-mail">
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    <h2>Casa do Código</h2>
+    <ul>
+      <li>Livro 1</li>
+      <li>Livro 2</li>
+      <li>Livro 3</li>
+    </ul>
+  </footer>
+
+  <script src="scripts/main.js" defer></script>
+</body>
+</html>
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  color: #333;
+}
+
+header {
+  background: #007bff;
+  color: white;
+  padding: 1rem;
+}
+
+.menu-hamburguer {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
+}
+
+.menu {
+  display: none;
+  list-style: none;
+}
+
+.banner {
+  background: url('assets/images/banner.jpg') no-repeat center/cover;
+  color: white;
+  text-align: center;
+  padding: 2rem;
+}
+
+.pesquisa input {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: none;
+}
+
+.carrossel {
+  margin: 2rem;
+}
+
+.cards {
+  display: flex;
+  gap: 1rem;
+}
+
+.card {
+  flex: 1;
+  background: white;
+  padding: 1rem;
+  border-radius: 4px;
+}
+document.addEventListener("DOMContentLoaded", () => {
+  const menuToggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("menu");
+
+  menuToggle.addEventListener("click", () => {
+    menu.classList.toggle("show");
+  });
+});
+@media (min-width: 768px) {
+  header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .menu {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cards {
+    flex-direction: row;
+  }
+
+  .carrossel {
+    display: flex;
+  }
+}
